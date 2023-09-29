@@ -11,6 +11,10 @@ use clap::Parser;
 struct CliArgs {
     #[arg(short, long)]
     mode: String,
+
+    /// Number of times to greet
+    #[arg(short, long, default_value_t = 9876)]
+    port: u16,
 }
 
 const MODE_SERVER: &str = "server";
@@ -19,7 +23,6 @@ const MODE_CLIENT: &str = "client";
 fn main() {
     let args = CliArgs::parse();
     println!("{:?}", args);
-    println!("{}", args.mode);
 
     // validate mode
     let mut valid_modes: HashSet<String> = HashSet::new();
